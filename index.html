@@ -40,9 +40,9 @@
     /* ─── TOKENS ─────────────────────────────────────────────── */
     :root {
       --desk:       #B4B2A9;
-      --monitor:    #6b5848;
-      --bezel:      #443628;
-      --screen-bg:  #2e2820; /* warm dark brown, was cool near-black #0a0a0f — matches bezel, zone colors unchanged */
+      --monitor:    #3a3a3a;
+      --bezel:      #1a1a1a;
+      --screen-bg:  #0d0d0d;
       --grid-line:  rgba(83,74,183,0.07);
       --room-glow:  rgba(248,217,223,0.6); /* softer pink-white, matches re-edited room image */
 
@@ -61,7 +61,7 @@
       --amber:      #BA7517;
       --amber-lt:   #FAC775;
       --amber-dk:   #633806;
-      --dark:       #2C2C2A;
+      --dark:       #1e1e38;
 
       --sticky-bg:  #FAC775;
       --sticky-txt: #000000;
@@ -321,7 +321,7 @@
     .traffic-dot { width: 7px; height: 7px; border-radius: 50%; }
     .menu-title {
       font-size: 8px;
-      color: #555;
+      color: #a0a0a0;
       letter-spacing: 0.08em;
       margin: 0 auto;
     }
@@ -350,7 +350,7 @@
       position: absolute; inset: 0;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
       gap: 2px;
       padding: 2px;
       transition: opacity 0.3s ease;
@@ -402,7 +402,7 @@
     .screen-hint {
       position: absolute; bottom: 5px; left: 33%; right: 0;
       text-align: center;
-      font-size: 7px; color: #2e2e2e; letter-spacing: 0.1em;
+      font-size: 7px; color: var(--purple-lt); letter-spacing: 0.1em;
       pointer-events: none;
       opacity: 0; transition: opacity 0.4s ease;
     }
@@ -604,6 +604,183 @@
       transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
     .replay-btn:hover { background: var(--bezel); color: #D3D1C7; border-color: #5F5E5A; }
+
+    /* ─── FRED POPUP ────────────────────────────────────────── */
+    .fred-popup {
+      position: fixed; inset: 0; z-index: 600;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.55);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease;
+      cursor: none;
+    }
+    .fred-popup.open { opacity: 1; pointer-events: all; }
+    .fred-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      max-width: 320px; width: 90%;
+      transform: scale(0.9);
+      transition: transform 0.25s ease;
+    }
+    .fred-popup.open .fred-card { transform: scale(1); }
+    .fred-img {
+      width: 100%; display: block;
+      max-height: 360px; object-fit: cover;
+    }
+    .fred-caption {
+      font-family: var(--font-hand);
+      font-size: 18px; font-weight: 700;
+      text-align: center;
+      padding: 14px 16px;
+      color: #1c1c1a;
+      background: #fff;
+    }
+    .bts-card { max-width: 420px; }
+    .bts-caption { font-size: 13px; line-height: 1.7; padding: 14px 20px; }
+
+    /* ─── BACKGROUND HOTSPOTS ───────────────────────────────── */
+    .bg-hotspot {
+      position: fixed;
+      z-index: 10;        /* above background, below monitor and modal */
+      cursor: none;
+      border-radius: 8px;
+      /* Uncomment to tune positions: outline: 2px solid red; background: rgba(255,0,0,0.18); */
+    }
+    /* When <body data-debug> is set, show outlines for calibration */
+    body[data-debug] .bg-hotspot {
+      outline: 2px dashed red;
+      background: rgba(255,0,0,0.15);
+    }
+
+    /* ─── MODAL OVERLAY ─────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.78);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease;
+      cursor: none;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal-dialog {
+      width: min(680px, 100%);
+      max-height: min(88vh, 740px);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transform: translateY(22px) scale(0.97);
+      transition: transform 0.25s ease;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .modal-overlay.open .modal-dialog { transform: translateY(0) scale(1); }
+
+    .modal-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 54px; flex-shrink: 0;
+    }
+    .modal-hdr-tag { font-size: 11px; letter-spacing: 0.15em; opacity: 0.75; }
+
+    .modal-close-btn {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      font-size: 13px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      cursor: none; transition: background 0.2s;
+    }
+    .modal-close-btn:hover { background: rgba(255,255,255,0.22); }
+
+    .modal-body-wrap {
+      flex: 1; overflow-y: auto;
+      padding: 28px 32px;
+      scrollbar-width: thin; scrollbar-color: #333 transparent;
+    }
+    .modal-body-wrap::-webkit-scrollbar { width: 4px; }
+    .modal-body-wrap::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+    /* Reset section__body styles that were designed for the tiny monitor */
+    .modal-body-wrap .section__body {
+      flex: none; overflow: visible; padding: 0;
+    }
+
+    /* ── White modal — dark text, zone color as accent ── */
+    .modal-body-wrap {
+      color: #1c1c1a;
+    }
+    /* Main text elements: force dark for readability on white */
+    .modal-body-wrap .s-heading  { color: #1c1c1a !important; }
+    .modal-body-wrap .s-body     { color: #444 !important; }
+    .modal-body-wrap .tl-co      { color: #1c1c1a !important; }
+    .modal-body-wrap .tl-role    { color: #555 !important; }
+    .modal-body-wrap .tl-desc    { color: #555 !important; }
+    .modal-body-wrap .tl-item    { border-left-color: #d8d8d5; }
+    .modal-body-wrap .now-title  { color: #1c1c1a !important; }
+    .modal-body-wrap .now-body   { color: #555 !important; opacity: 1; }
+    .modal-body-wrap .i-title    { color: #1c1c1a !important; }
+    .modal-body-wrap .i-body     { color: #555 !important; opacity: 1; }
+    .modal-body-wrap .info-val   { color: #1c1c1a !important; }
+    .modal-body-wrap .info-label { color: #888 !important; }
+    .modal-body-wrap .info-row   { background: #f0efec; border-color: #ddd; }
+    /* Eyebrow / label tags — use the base zone color (darker) for contrast on white */
+    .modal-body-wrap .s-eyebrow  { opacity: 1; filter: brightness(0.75) saturate(1.2); }
+    .modal-body-wrap .now-label  { filter: brightness(0.72) saturate(1.2); }
+    /* Unclassed value divs inside about-style tinted boxes */
+    .modal-body-wrap [style*="color:#E"],
+    .modal-body-wrap [style*="color:#F"],
+    .modal-body-wrap [style*="color:#9F"] { color: #1c1c1a !important; }
+    /* Chip and doc-link text */
+    .modal-body-wrap .chip         { color: #1c1c1a !important; filter: brightness(0.7) saturate(1.3); }
+    .modal-body-wrap .doc-link__name { color: #1c1c1a !important; }
+    /* Timeline date labels keep zone color but shift darker */
+    .modal-body-wrap .tl-date     { filter: brightness(0.72) saturate(1.2); }
+    /* BTS egg on white */
+    .modal-body-wrap .egg__hint   { filter: brightness(0.7); }
+    /* contact section ticker on white modal */
+    .modal-tick .ticker__item     { color: #888; }
+
+    /* Scale up all section typography for the modal */
+    .modal-body-wrap .s-eyebrow { font-size: 11px; }
+    .modal-body-wrap .s-heading { font-size: 30px; letter-spacing: -0.5px; }
+    .modal-body-wrap .s-body    { font-size: 15px; line-height: 1.7; }
+    .modal-body-wrap .tl-co    { font-size: 17px; }
+    .modal-body-wrap .tl-role  { font-size: 13px; }
+    .modal-body-wrap .tl-date  { font-size: 11px; }
+    .modal-body-wrap .tl-desc  { font-size: 13px; line-height: 1.6; }
+    .modal-body-wrap .tl-item  { padding-bottom: 22px; }
+    .modal-body-wrap .i-title  { font-size: 15px; }
+    .modal-body-wrap .i-body   { font-size: 13px; }
+    .modal-body-wrap .i-icon   { font-size: 22px; }
+    .modal-body-wrap .i-cards  { gap: 10px; }
+    .modal-body-wrap .i-card   { padding: 14px; }
+    .modal-body-wrap .now-label{ font-size: 10px; }
+    .modal-body-wrap .now-title{ font-size: 15px; }
+    .modal-body-wrap .now-body { font-size: 13px; }
+    .modal-body-wrap .now-card { padding: 14px 16px; }
+    .modal-body-wrap .now-cards{ gap: 10px; }
+    .modal-body-wrap .chip     { font-size: 13px; padding: 9px 13px; }
+    .modal-body-wrap .chips    { gap: 8px; }
+    .modal-body-wrap .info-label{ font-size: 11px; }
+    .modal-body-wrap .info-val  { font-size: 15px; }
+    .modal-body-wrap .info-row  { padding: 12px 14px; margin-bottom: 10px; }
+    .modal-body-wrap .doc-link__label { font-size: 10px; }
+    .modal-body-wrap .doc-link__name  { font-size: 15px; }
+    .modal-body-wrap .doc-link  { padding: 12px 14px; margin-bottom: 8px; }
+    .modal-body-wrap .egg       { padding: 12px 14px; margin-top: 16px; }
+    .modal-body-wrap .egg__disc { width: 36px; height: 36px; font-size: 13px; }
+    .modal-body-wrap .egg__label{ font-size: 12px; }
+    .modal-body-wrap .egg__hint { font-size: 13px; }
+
+    .modal-tick {
+      height: 30px; display: flex; align-items: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .modal-tick .ticker__inner { animation: tickerScroll 22s linear infinite; white-space: nowrap; display: flex; gap: 1.5rem; }
+    .modal-tick .ticker__item  { font-size: 11px; letter-spacing: 0.12em; }
 
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 500px) {
@@ -1022,6 +1199,49 @@
 
 </main><!-- /desk -->
 
+<!-- ── BACKGROUND HOTSPOTS ─────────────────────────────────────
+     Invisible clickable zones over items painted in the background
+     image. Coordinates (data-ix/iy/iw/ih) are in original image
+     pixels (1672×941). positionHotspots() in JS scales + places them.
+     Add data-debug="true" to body to see red outlines for tuning. -->
+<div class="bg-hotspot" id="hs-army-bomb"
+     data-ix="1375" data-iy="490" data-iw="165" data-ih="200"
+     role="button" tabindex="0" aria-label="Army bomb"></div>
+<div class="bg-hotspot" id="hs-cds"
+     data-ix="1375" data-iy="330" data-iw="165" data-ih="160"
+     role="button" tabindex="0" aria-label="BTS albums"></div>
+<div class="bg-hotspot" id="hs-cat-orange"
+     data-ix="330"  data-iy="610" data-iw="160" data-ih="110"
+     role="button" tabindex="0" aria-label="Orange cat"></div>
+<div class="bg-hotspot" id="hs-cat-black"
+     data-ix="940"  data-iy="690" data-iw="190" data-ih="230"
+     role="button" tabindex="0" aria-label="Black cat"></div>
+
+<!-- ── FRED POPUP ─────────────────────────────────────────────── -->
+<div id="fredPopup" class="fred-popup" aria-hidden="true">
+  <div class="fred-card">
+    <img src="images/fred.jpg" alt="Fred the cat" class="fred-img">
+    <p class="fred-caption">Meet Freddie Meowcury 🐱</p>
+  </div>
+</div>
+
+<!-- ── BTS GROUP POPUP ────────────────────────────────────────── -->
+<div id="btsPopup" class="fred-popup" aria-hidden="true">
+  <div class="fred-card bts-card">
+    <img src="images/bts-group.jpg" alt="BTS group photo" class="fred-img">
+    <p class="fred-caption bts-caption">Kim Namjoon!&nbsp;&nbsp;&nbsp;Kim Seokjin!&nbsp;&nbsp;&nbsp;Min Yoongi!&nbsp;&nbsp;&nbsp;Jung Hoseok!&nbsp;&nbsp;&nbsp;Park Jimin!&nbsp;&nbsp;&nbsp;Kim Taehyung!&nbsp;&nbsp;&nbsp;Jeon Jungkook!&nbsp;&nbsp;&nbsp;BTS!</p>
+  </div>
+</div>
+
+<!-- ── MODAL OVERLAY — populated by JS when a zone is clicked ── -->
+<div id="modalOverlay" class="modal-overlay" aria-hidden="true">
+  <div class="modal-dialog" id="modalDialog" role="dialog" aria-modal="true">
+    <div class="modal-hdr" id="modalHdr"></div>
+    <div class="modal-body-wrap" id="modalBodyWrap"></div>
+    <div class="modal-tick" id="modalTick"></div>
+  </div>
+</div>
+
 <script>
   /* ─────────────────────────────────────────────────────────────
      PERFORMANCE: All JS is deferred to after HTML parse by being
@@ -1056,12 +1276,45 @@
       const w = Math.min(Math.round(NATIVE_W * scale), BASE_W);
       deskEl.style.width = Math.max(w, 280) + 'px';
 
+      // Scale sticky note with monitor so it doesn't swallow zone 02
+      // at smaller viewport sizes.
+      const sf = Math.min(w, BASE_W) / BASE_W;
+      const stickyEl = deskEl.querySelector('.sticky-wrap');
+      if (stickyEl) {
+        stickyEl.style.transformOrigin = 'top right';
+        stickyEl.style.transform = `rotate(4deg) scale(${sf.toFixed(3)})`;
+      }
+
       // Measure actual height after width change, then set margin-top
       // so the stand base lands at DESK_Y in background-image space.
       const monH = deskEl.offsetHeight;
       deskEl.style.marginTop = (DESK_Y * scale - monH) + 'px';
     }
 
+    update();
+    window.addEventListener('resize', update);
+  })();
+
+  /* ── HOTSPOT POSITIONING ─────────────────────────────────────── */
+  /* Places invisible clickable zones over background image items.
+     Uses the same cover-scale math as positionMonitorOnDesk().
+     Tweak data-ix/iy/iw/ih on the HTML elements to recalibrate,
+     or add data-debug to <body> to show red outlines. */
+  (function positionHotspots() {
+    const IMG_W = 1672, IMG_H = 941;
+    function update() {
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const scale  = Math.max(vw / IMG_W, vh / IMG_H);
+      const hOff   = (vw - IMG_W * scale) / 2; // horizontal offset (negative = image wider than viewport)
+      document.querySelectorAll('.bg-hotspot').forEach(el => {
+        const ix = +el.dataset.ix, iy = +el.dataset.iy,
+              iw = +el.dataset.iw, ih = +el.dataset.ih;
+        el.style.left   = (ix * scale + hOff) + 'px';
+        el.style.top    = (iy * scale) + 'px';
+        el.style.width  = (iw * scale) + 'px';
+        el.style.height = (ih * scale) + 'px';
+      });
+    }
     update();
     window.addEventListener('resize', update);
   })();
@@ -1176,6 +1429,40 @@
     return totalDur;
   }
 
+  /* Synthesized cat meow — pitch sweeps up then falls (mee-oww shape) */
+  function playMeow() {
+    try {
+      const ctx = getAudioCtx();
+      const now = ctx.currentTime;
+      const osc    = ctx.createOscillator();
+      const filter = ctx.createBiquadFilter();
+      const gain   = ctx.createGain();
+
+      osc.type = 'sawtooth';
+      filter.type = 'bandpass';
+      filter.frequency.value = 900;
+      filter.Q.value = 4;
+
+      // Pitch envelope: rise then fall (meee-oww)
+      osc.frequency.setValueAtTime(480, now);
+      osc.frequency.linearRampToValueAtTime(780, now + 0.14);
+      osc.frequency.linearRampToValueAtTime(580, now + 0.32);
+      osc.frequency.linearRampToValueAtTime(380, now + 0.58);
+
+      // Amplitude envelope
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.22, now + 0.07);
+      gain.gain.setValueAtTime(0.20, now + 0.32);
+      gain.gain.linearRampToValueAtTime(0, now + 0.62);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.65);
+    } catch(e) {}
+  }
+
   function toggleBTS() {
     try {
       if (btsPlaying) {
@@ -1215,23 +1502,180 @@
     cursorEl.textContent = glyph || '✦';
   }
 
-  /* ── NAVIGATION ─────────────────────────────────────────────── */
-  function showSection(id) {
-    zonesView.style.opacity = '0';
-    zonesView.style.pointerEvents = 'none';
-    screenHint.classList.remove('visible');
-    SECTION_IDS.forEach(s => $('sec-' + s).classList.remove('active'));
-    requestAnimationFrame(() => $('sec-' + id).classList.add('active'));
+  /* ── MODAL NAVIGATION ───────────────────────────────────────── */
+  const modalOverlay  = $('modalOverlay');
+  const modalDialog   = $('modalDialog');
+  const modalHdr      = $('modalHdr');
+  const modalBodyWrap = $('modalBodyWrap');
+  const modalTick     = $('modalTick');
+
+  const MODAL_BG = '#fafaf8';
+  const SECTION_META = {
+    work:      { label: '01 — Work & Education', hdrBg: 'var(--purple)', tagColor: 'var(--purple-lt)', bodyBg: MODAL_BG },
+    about:     { label: '02 — About Me',         hdrBg: 'var(--teal)',   tagColor: 'var(--teal-lt)',   bodyBg: MODAL_BG },
+    interests: { label: '03 — Interests',        hdrBg: 'var(--coral)',  tagColor: 'var(--coral-lt)',  bodyBg: MODAL_BG },
+    now:       { label: '04 — Now',              hdrBg: 'var(--pink)',   tagColor: 'var(--pink-lt)',   bodyBg: MODAL_BG },
+    resume:    { label: '05 — Resume & Skills',  hdrBg: 'var(--amber)',  tagColor: 'var(--amber-lt)', bodyBg: MODAL_BG },
+    contact:   { label: '06 — Contact',          hdrBg: 'var(--dark)',   tagColor: '#a0a0c0',          bodyBg: MODAL_BG },
+  };
+
+  let openSectionId = null;
+  let closeTimer    = null;
+
+  function restoreToSection() {
+    if (!openSectionId) return;
+    const secEl = $('sec-' + openSectionId);
+    const body = modalBodyWrap.querySelector('.section__body');
+    const tick = modalTick.querySelector('.ticker');
+    if (body && secEl) secEl.appendChild(body);
+    if (tick && secEl) secEl.appendChild(tick);
+    modalBodyWrap.style.background = '';
   }
 
-  function goHome() {
-    SECTION_IDS.forEach(s => $('sec-' + s).classList.remove('active'));
-    requestAnimationFrame(() => {
-      zonesView.style.opacity = '1';
-      zonesView.style.pointerEvents = 'all';
-      screenHint.classList.add('visible');
-    });
+  function showSection(id) {
+    /* cancel any in-flight close restore */
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; restoreToSection(); }
+
+    openSectionId = id;
+    const meta  = SECTION_META[id];
+    const secEl = $('sec-' + id);
+
+    /* build header */
+    modalHdr.style.background = meta.hdrBg;
+    modalHdr.innerHTML =
+      `<span class="modal-hdr-tag" style="color:${meta.tagColor}">${meta.label}</span>` +
+      `<button class="modal-close-btn" id="modalCloseBtn" aria-label="Close">✕</button>`;
+    $('modalCloseBtn').addEventListener('click', closeModal);
+    $('modalCloseBtn').addEventListener('mouseenter', () => setCursor('back', '✕'));
+    $('modalCloseBtn').addEventListener('mouseleave', () => setCursor('', '✦'));
+
+    /* move section nodes into modal */
+    const bodyEl = secEl.querySelector('.section__body');
+    const tickEl = secEl.querySelector('.ticker');
+    modalBodyWrap.style.background = meta.bodyBg;
+    if (bodyEl) modalBodyWrap.appendChild(bodyEl);
+    if (tickEl) modalTick.appendChild(tickEl);
+
+    /* show overlay */
+    modalOverlay.setAttribute('aria-hidden', 'false');
+    modalDialog.setAttribute('aria-label', meta.label);
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    /* dim zones but keep them visible */
+    zonesView.style.opacity = '0.35';
+    zonesView.style.pointerEvents = 'none';
+    screenHint.classList.remove('visible');
   }
+
+  function closeModal() {
+    if (!openSectionId) return;
+    modalOverlay.classList.remove('open');
+    modalOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    zonesView.style.opacity = '1';
+    zonesView.style.pointerEvents = 'all';
+    screenHint.classList.add('visible');
+    const idToRestore = openSectionId;
+    openSectionId = null;
+    closeTimer = setTimeout(() => {
+      restoreToSection.call({ openSectionId: idToRestore });
+      /* inline restore since openSectionId is now null */
+      const secEl = $('sec-' + idToRestore);
+      const body  = modalBodyWrap.querySelector('.section__body');
+      const tick  = modalTick.querySelector('.ticker');
+      if (body && secEl) secEl.appendChild(body);
+      if (tick && secEl) secEl.appendChild(tick);
+      modalBodyWrap.style.background = '';
+      closeTimer = null;
+    }, 280);
+  }
+
+  function goHome() { closeModal(); }
+
+  /* close on backdrop click or Escape */
+  modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* ── BACKGROUND HOTSPOT LISTENERS ──────────────────────────── */
+  const hsArmyBomb = $('hs-army-bomb');
+  const hsCds      = $('hs-cds');
+  const hsCatOrange= $('hs-cat-orange');
+  const hsCatBlack = $('hs-cat-black');
+
+  function hotspotOn(glyph)  { setCursor('zone', glyph); }
+  function hotspotOff()      { setCursor('', '✦'); }
+
+  // Army bomb → BTS group photo popup
+  const btsPopup = $('btsPopup');
+  function openBTS()  {
+    if (openSectionId) return;
+    btsPopup.classList.add('open');
+    btsPopup.setAttribute('aria-hidden', 'false');
+  }
+  function closeBTS() {
+    btsPopup.classList.remove('open');
+    btsPopup.setAttribute('aria-hidden', 'true');
+  }
+  btsPopup.addEventListener('click', closeBTS);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBTS(); });
+
+  hsArmyBomb.addEventListener('mouseenter', () => hotspotOn('💜'));
+  hsArmyBomb.addEventListener('mouseleave', hotspotOff);
+  hsArmyBomb.addEventListener('click', openBTS);
+  hsArmyBomb.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openBTS(); });
+
+  // BTS CDs → toggle the audio clip
+  const btsAudio = new Audio('audio/btb-bts.mp3');
+  btsAudio.volume = 0.75;
+  function toggleBTSAudio() {
+    if (!openSectionId) {
+      if (btsAudio.paused) {
+        btsAudio.currentTime = 0;
+        btsAudio.play().catch(() => {});
+      } else {
+        btsAudio.pause();
+        btsAudio.currentTime = 0;
+      }
+    }
+  }
+  hsCds.addEventListener('mouseenter', () => hotspotOn('♪'));
+  hsCds.addEventListener('mouseleave', hotspotOff);
+  hsCds.addEventListener('click', toggleBTSAudio);
+  hsCds.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') toggleBTSAudio(); });
+
+  // Orange cat → Fred popup + real meow audio
+  const fredPopup  = $('fredPopup');
+  const fredAudio  = new Audio('audio/fred-meow.mp3');
+  fredAudio.volume = 0.8;
+
+  function openFred() {
+    if (openSectionId) return;
+    fredAudio.currentTime = 0;
+    fredAudio.play().catch(() => {});
+    fredPopup.classList.add('open');
+    fredPopup.setAttribute('aria-hidden', 'false');
+  }
+  function closeFred() {
+    fredPopup.classList.remove('open');
+    fredPopup.setAttribute('aria-hidden', 'true');
+    fredAudio.pause();
+    fredAudio.currentTime = 0;
+  }
+
+  fredPopup.addEventListener('click', closeFred);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFred(); });
+
+  hsCatOrange.addEventListener('mouseenter', () => hotspotOn('♡'));
+  hsCatOrange.addEventListener('mouseleave', hotspotOff);
+  hsCatOrange.addEventListener('click', openFred);
+  hsCatOrange.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openFred(); });
+
+  // Black cat → synthesized meow only
+  hsCatBlack.addEventListener('mouseenter', () => hotspotOn('♡'));
+  hsCatBlack.addEventListener('mouseleave', hotspotOff);
+  hsCatBlack.addEventListener('click', () => { if (!openSectionId) playMeow(); });
+  hsCatBlack.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') playMeow(); });
 
   /* ── ZONE EVENT LISTENERS ───────────────────────────────────── */
   $$('.zone').forEach(zone => {
@@ -1265,6 +1709,21 @@
 
   /* ── BOOT SEQUENCE ──────────────────────────────────────────── */
   function resetForBoot() {
+    /* close modal instantly if open */
+    if (openSectionId || closeTimer) {
+      if (closeTimer) clearTimeout(closeTimer);
+      const id = openSectionId;
+      openSectionId = null; closeTimer = null;
+      modalOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if (id) {
+        const secEl = $('sec-' + id);
+        const body = modalBodyWrap.querySelector('.section__body');
+        const tick = modalTick.querySelector('.ticker');
+        if (body && secEl) secEl.appendChild(body);
+        if (tick && secEl) secEl.appendChild(tick);
+      }
+    }
     /* sections */
     SECTION_IDS.forEach(s => $('sec-' + s).classList.remove('active'));
 
