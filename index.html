@@ -640,6 +640,35 @@
     .bts-card { max-width: 420px; }
     .bts-caption { font-size: 13px; line-height: 1.7; padding: 14px 20px; }
 
+    /* ─── FACT CARD (text-only easter egg popups) ─────────────── */
+    .fact-card {
+      background: #fafaf8;
+      border-radius: 14px;
+      overflow: hidden;
+      max-width: 360px; width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      transform: scale(0.9);
+      transition: transform 0.25s ease;
+    }
+    .fred-popup.open .fact-card { transform: scale(1); }
+    .fact-hdr {
+      padding: 13px 20px;
+      font-family: var(--mono);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      color: #fff;
+    }
+    .fact-body {
+      padding: 18px 22px 20px;
+      font-size: 15px; line-height: 1.65;
+      color: #2a2a3a; margin: 0;
+      font-family: var(--font-sans);
+    }
+    .fact-card--green  .fact-hdr { background: var(--teal); }
+    .fact-card--purple .fact-hdr { background: var(--purple); }
+    .fact-card--blue   .fact-hdr { background: #1a5c8a; }
+    .fact-card--amber  .fact-hdr { background: var(--amber); }
+
     /* ─── BACKGROUND HOTSPOTS ───────────────────────────────── */
     .bg-hotspot {
       position: fixed;
@@ -1205,17 +1234,32 @@
      pixels (1672×941). positionHotspots() in JS scales + places them.
      Add data-debug="true" to body to see red outlines for tuning. -->
 <div class="bg-hotspot" id="hs-army-bomb"
-     data-ix="1375" data-iy="490" data-iw="165" data-ih="200"
+     data-ix="1375" data-iy="600" data-iw="165" data-ih="130"
      role="button" tabindex="0" aria-label="Army bomb"></div>
 <div class="bg-hotspot" id="hs-cds"
-     data-ix="1375" data-iy="330" data-iw="165" data-ih="160"
+     data-ix="1375" data-iy="360" data-iw="165" data-ih="190"
      role="button" tabindex="0" aria-label="BTS albums"></div>
 <div class="bg-hotspot" id="hs-cat-orange"
-     data-ix="330"  data-iy="610" data-iw="160" data-ih="110"
+     data-ix="380"  data-iy="600" data-iw="180" data-ih="130"
      role="button" tabindex="0" aria-label="Orange cat"></div>
 <div class="bg-hotspot" id="hs-cat-black"
-     data-ix="940"  data-iy="690" data-iw="190" data-ih="230"
+     data-ix="980"  data-iy="630" data-iw="150" data-ih="120"
      role="button" tabindex="0" aria-label="Black cat"></div>
+<div class="bg-hotspot" id="hs-camping"
+     data-ix="55"  data-iy="25" data-iw="250" data-ih="240"
+     role="button" tabindex="0" aria-label="Camping painting"></div>
+<div class="bg-hotspot" id="hs-games"
+     data-ix="1360" data-iy="25" data-iw="265" data-ih="235"
+     role="button" tabindex="0" aria-label="Video game art"></div>
+<div class="bg-hotspot" id="hs-mickey"
+     data-ix="315"  data-iy="215" data-iw="145" data-ih="155"
+     role="button" tabindex="0" aria-label="Mickey Mouse ears"></div>
+<div class="bg-hotspot" id="hs-plant"
+     data-ix="140"  data-iy="570" data-iw="200" data-ih="185"
+     role="button" tabindex="0" aria-label="Plant"></div>
+<div class="bg-hotspot" id="hs-books"
+     data-ix="120"  data-iy="375" data-iw="200" data-ih="155"
+     role="button" tabindex="0" aria-label="Books"></div>
 
 <!-- ── FRED POPUP ─────────────────────────────────────────────── -->
 <div id="fredPopup" class="fred-popup" aria-hidden="true">
@@ -1230,6 +1274,46 @@
   <div class="fred-card bts-card">
     <img src="images/bts-group.jpg" alt="BTS group photo" class="fred-img">
     <p class="fred-caption bts-caption">Kim Namjoon!&nbsp;&nbsp;&nbsp;Kim Seokjin!&nbsp;&nbsp;&nbsp;Min Yoongi!&nbsp;&nbsp;&nbsp;Jung Hoseok!&nbsp;&nbsp;&nbsp;Park Jimin!&nbsp;&nbsp;&nbsp;Kim Taehyung!&nbsp;&nbsp;&nbsp;Jeon Jungkook!&nbsp;&nbsp;&nbsp;BTS!</p>
+  </div>
+</div>
+
+<!-- ── BOOKS POPUP ───────────────────────────────────────────── -->
+<div id="booksPopup" class="fred-popup" aria-hidden="true">
+  <div class="fred-card fact-card fact-card--purple">
+    <div class="fact-hdr">📚 Super Power</div>
+    <p class="fact-body">One hour. Two hundred pages read.</p>
+  </div>
+</div>
+
+<!-- ── CAMPING POPUP ──────────────────────────────────────────── -->
+<div id="campingPopup" class="fred-popup" aria-hidden="true">
+  <div class="fred-card fact-card fact-card--green">
+    <div class="fact-hdr">🏕️ Fun Fact</div>
+    <p class="fact-body">Avid camper with a solid gear setup and a deep appreciation for places with no WiFi. The woods recharge what spreadsheets drain.</p>
+  </div>
+</div>
+
+<!-- ── VIDEO GAME POPUP ───────────────────────────────────────── -->
+<div id="gamePopup" class="fred-popup" aria-hidden="true">
+  <div class="fred-card fact-card fact-card--purple">
+    <div class="fact-hdr">🎮 Fun Fact</div>
+    <p class="fact-body">Proud gamer with strong opinions about story-driven games. The kind of player who reads every piece of lore and still misses the obvious plot twist.</p>
+  </div>
+</div>
+
+<!-- ── DISNEY POPUP ───────────────────────────────────────────── -->
+<div id="disneyPopup" class="fred-popup" aria-hidden="true">
+  <div class="fred-card fact-card fact-card--blue">
+    <div class="fact-hdr">🐭 Fun Family Fact</div>
+    <p class="fact-body">Four generations of Disneyland employees. Yes, really. It's basically a family tradition at this point — the magic runs deep.</p>
+  </div>
+</div>
+
+<!-- ── PLANT POPUP ────────────────────────────────────────────── -->
+<div id="plantPopup" class="fred-popup" aria-hidden="true">
+  <div class="fred-card fact-card fact-card--amber">
+    <div class="fact-hdr">🌿 Fun Fact</div>
+    <p class="fact-body">I envy people who have a green thumb and can grow anything, anywhere. I have a black thumb. My personal best at keeping a plant alive is 9 months.</p>
   </div>
 </div>
 
@@ -1676,6 +1760,97 @@
   hsCatBlack.addEventListener('mouseleave', hotspotOff);
   hsCatBlack.addEventListener('click', () => { if (!openSectionId) playMeow(); });
   hsCatBlack.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') playMeow(); });
+
+  // ── Shared helper: make a dismiss-on-click text popup ──────────
+  function makeTextPopup(popupId) {
+    const el = $(popupId);
+    function open()  {
+      if (openSectionId) return;
+      el.classList.add('open');
+      el.setAttribute('aria-hidden', 'false');
+    }
+    function close() {
+      el.classList.remove('open');
+      el.setAttribute('aria-hidden', 'true');
+    }
+    el.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    return { open, close };
+  }
+
+  // Books → text popup
+  const booksPop = makeTextPopup('booksPopup');
+  const hsBooks  = $('hs-books');
+  hsBooks.addEventListener('mouseenter', () => hotspotOn('📚'));
+  hsBooks.addEventListener('mouseleave', hotspotOff);
+  hsBooks.addEventListener('click', booksPop.open);
+  hsBooks.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') booksPop.open(); });
+
+  // Camping painting → text popup
+  const campingPop = makeTextPopup('campingPopup');
+  const hsCamping  = $('hs-camping');
+  hsCamping.addEventListener('mouseenter', () => hotspotOn('🏕️'));
+  hsCamping.addEventListener('mouseleave', hotspotOff);
+  hsCamping.addEventListener('click', campingPop.open);
+  hsCamping.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') campingPop.open(); });
+
+  // Video game art → text popup + Sailor Moon theme audio
+  const smAudio     = new Audio('audio/sm-theme.mp3');
+  smAudio.volume    = 0.75;
+  const gamePopupEl = $('gamePopup');
+  function openGame() {
+    if (openSectionId) return;
+    smAudio.currentTime = 0;
+    smAudio.play().catch(() => {});
+    gamePopupEl.classList.add('open');
+    gamePopupEl.setAttribute('aria-hidden', 'false');
+  }
+  function closeGame() {
+    gamePopupEl.classList.remove('open');
+    gamePopupEl.setAttribute('aria-hidden', 'true');
+    smAudio.pause();
+    smAudio.currentTime = 0;
+  }
+  gamePopupEl.addEventListener('click', closeGame);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGame(); });
+  const hsGames = $('hs-games');
+  hsGames.addEventListener('mouseenter', () => hotspotOn('🎮'));
+  hsGames.addEventListener('mouseleave', hotspotOff);
+  hsGames.addEventListener('click', openGame);
+  hsGames.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openGame(); });
+
+  // Mickey Mouse ears → text popup + Disneyland audio
+  const dlandAudio     = new Audio('audio/dland.mp3');
+  dlandAudio.volume    = 0.75;
+  const disneyPopupEl  = $('disneyPopup');
+  function openDisney() {
+    if (openSectionId) return;
+    dlandAudio.currentTime = 0;
+    dlandAudio.play().catch(() => {});
+    disneyPopupEl.classList.add('open');
+    disneyPopupEl.setAttribute('aria-hidden', 'false');
+  }
+  function closeDisney() {
+    disneyPopupEl.classList.remove('open');
+    disneyPopupEl.setAttribute('aria-hidden', 'true');
+    dlandAudio.pause();
+    dlandAudio.currentTime = 0;
+  }
+  disneyPopupEl.addEventListener('click', closeDisney);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDisney(); });
+  const hsMickey = $('hs-mickey');
+  hsMickey.addEventListener('mouseenter', () => hotspotOn('✨'));
+  hsMickey.addEventListener('mouseleave', hotspotOff);
+  hsMickey.addEventListener('click', openDisney);
+  hsMickey.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openDisney(); });
+
+  // Plant → text popup only
+  const plantPop = makeTextPopup('plantPopup');
+  const hsPlant  = $('hs-plant');
+  hsPlant.addEventListener('mouseenter', () => hotspotOn('🌿'));
+  hsPlant.addEventListener('mouseleave', hotspotOff);
+  hsPlant.addEventListener('click', plantPop.open);
+  hsPlant.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') plantPop.open(); });
 
   /* ── ZONE EVENT LISTENERS ───────────────────────────────────── */
   $$('.zone').forEach(zone => {
