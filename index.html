@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kate Javandel — Web Content & CMS Specialist</title>
-  <meta name="description" content="Web Content Manager and CMS specialist with 14+ years of enterprise experience across Intuit, Wells Fargo, and Bank of the West. Based in San Jose, CA. Open to contract and full-time roles.">
+  <meta name="description" content="Web Content Manager and CMS specialist with 14+ years of enterprise experience across Intuit, Wells Fargo, and Bank of the West. Based in Alameda, CA. Open to contract and full-time roles.">
 
   <!--
     PERFORMANCE NOTES
@@ -107,7 +107,7 @@
       text-shadow: 0 0 6px rgba(0,0,0,0.6), 0 0 2px rgba(0,0,0,0.9);
       /* intentionally no transition — instant tracking feels more natural */
     }
-    #cursor.state-zone  { font-size: 14px; color: #D4537E; }
+    #cursor.state-zone  { font-size: 22px; color: #D4537E; }
     #cursor.state-back  { font-size: 12px; color: #888; }
     #cursor.state-music { color: var(--coral-lt); }
     #cursor.state-replay{ color: var(--bezel); }
@@ -683,6 +683,28 @@
       background: rgba(255,0,0,0.15);
     }
 
+    /* ─── WALL WHISPER ──────────────────────────────────────── */
+    .wall-whisper {
+      position: fixed;
+      right: 19vw;
+      top: 16vh;
+      font-family: var(--font-hand);
+      font-size: clamp(14px, 1.4vw, 22px);
+      color: rgba(240, 235, 228, 0.9);
+      letter-spacing: 0.08em;
+      transform: rotate(-22deg);
+      pointer-events: none;
+      user-select: none;
+      z-index: 6;
+      white-space: nowrap;
+      text-shadow: 0 0 12px rgba(255,248,240,0.6);
+      animation: wallWhisper 6s ease-in-out infinite;
+    }
+    @keyframes wallWhisper {
+      0%, 100% { opacity: 0.25; }
+      50%       { opacity: 0.85; }
+    }
+
     /* ─── MODAL OVERLAY ─────────────────────────────────────── */
     .modal-overlay {
       position: fixed; inset: 0; z-index: 500;
@@ -884,17 +906,17 @@
                 <span class="zone__arrow" aria-hidden="true">↗</span>
               </button>
 
-              <button class="zone zone--teal" data-section="about" aria-label="About Me — San Jose, CA">
+              <button class="zone zone--teal" data-section="about" aria-label="About Me — Alameda, CA">
                 <span class="zone__num">02 — About Me</span>
                 <span class="zone__label">The person behind it.</span>
-                <span class="zone__sub">San Jose, CA</span>
+                <span class="zone__sub">Alameda, CA</span>
                 <span class="zone__arrow" aria-hidden="true">↗</span>
               </button>
 
-              <button class="zone zone--coral" data-section="interests" aria-label="Interests — BTS, live music and the outdoors">
+              <button class="zone zone--coral" data-section="interests" aria-label="Interests — Many interests. Zero apologies.">
                 <span class="zone__num">03 — Interests</span>
-                <span class="zone__label">BTS, live music &amp; outdoors.</span>
-                <span class="zone__sub">ARMY + rock fan + camper</span>
+                <span class="zone__label">Many interests. Zero apologies.</span>
+                <span class="zone__sub">cat mom · gamer · yarn hoarder · ARMY</span>
                 <span class="zone__arrow" aria-hidden="true">↗</span>
               </button>
 
@@ -937,47 +959,60 @@
                 <div class="tl-item">
                   <div class="tl-dot" style="background:var(--purple);"></div>
                   <div class="tl-co">Intuit</div>
-                  <div class="tl-role">Web Content Manager I, II (Contract)</div>
-                  <div class="tl-date" style="color:var(--purple-lt);">2022 – Present</div>
-                  <div class="tl-desc">CMS governance, content strategy, and structured publishing for enterprise digital properties. Repeat engagement following mandatory contractor break — brought back for the depth of platform knowledge.</div>
+                  <div class="tl-role">Marketing Manager, Web Operations (Contract)</div>
+                  <div class="tl-date" style="color:var(--purple-lt);">Oct 2023 – Present</div>
+                  <div class="tl-desc">Web content management on turbotax.intuit.com using WordPress. Built a 50+ page publisher's wiki; currently mentoring new hires and exploring AI-augmented publishing workflows. Rehired after mandatory contractor break.</div>
                 </div>
                 <div class="tl-item">
                   <div class="tl-dot" style="background:var(--purple);"></div>
-                  <div class="tl-co">Wells Fargo</div>
-                  <div class="tl-role">Web Content Manager / Web Publisher (Contract)</div>
-                  <div class="tl-date" style="color:var(--purple-lt);">2018 – 2022</div>
-                  <div class="tl-desc">Digital content publishing, taxonomy management, and editorial governance for one of the largest financial institutions in the US. Repeat contract engagement.</div>
+                  <div class="tl-co">Bank of the West</div>
+                  <div class="tl-role">AVP, Web Content Analyst</div>
+                  <div class="tl-date" style="color:var(--purple-lt);">Feb 2015 – Sep 2023</div>
+                  <div class="tl-desc">Managed content across multiple CMS platforms for BankoftheWest.com. Led two full site rebuilds (400 pages), two CMS upgrades, cross-functional training programs, and enterprise digital asset management.</div>
                 </div>
                 <div class="tl-item">
                   <div class="tl-dot" style="background:var(--purple-lt);"></div>
-                  <div class="tl-co">Bank of the West</div>
-                  <div class="tl-role">Web Content Manager</div>
-                  <div class="tl-date" style="color:var(--purple-lt);">Earlier</div>
-                  <div class="tl-desc">Web content management and digital publishing across the bank's customer-facing properties.</div>
+                  <div class="tl-co">Wells Fargo</div>
+                  <div class="tl-role">Web Publisher, Wholesale UX (Contract)</div>
+                  <div class="tl-date" style="color:var(--purple-lt);">2011 – 2014</div>
+                  <div class="tl-desc">Two contract engagements. HTML-based web publishing for internal portals. Led post-migration cleanup in Tridion CMS touching ~53,000 files. Cross-functional team leadership and documentation.</div>
                 </div>
                 <div class="tl-item">
                   <div class="tl-dot" style="background:#3a3a5a;"></div>
-                  <div class="tl-co">Earlier roles</div>
-                  <div class="tl-role">Web Publisher · Content Editor · Digital Producer</div>
-                  <div class="tl-date" style="color:var(--purple-lt);">2010 – 2018</div>
-                  <div class="tl-desc">14+ years across enterprise CMS platforms including Sitecore, WordPress, Tridion, Documentum, and Adobe Experience Manager.</div>
+                  <div class="tl-co">UrbanFantasyReads.com</div>
+                  <div class="tl-role">Co-Founder, Developer &amp; Content Producer</div>
+                  <div class="tl-date" style="color:var(--purple-lt);">2010 – 2015</div>
+                  <div class="tl-desc">Co-founded and managed a content website end-to-end — technical architecture, content strategy, editorial, and audience growth.</div>
                 </div>
               </div>
               <div style="margin-top:12px;padding-top:10px;border-top:1px solid #1e1e2e;">
+                <p class="s-eyebrow" style="color:var(--purple-lt);">Education</p>
+                <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px;">
+                  <div style="font-size:9px;color:#EEEDFE;">Web Design &amp; Development — UC Irvine <span style="color:var(--purple-lt);">· 2014–2015</span></div>
+                  <div style="font-size:9px;color:#EEEDFE;">Technical Writing — UC Riverside <span style="color:var(--purple-lt);">· 2011–2012</span></div>
+                  <div style="font-size:9px;color:#EEEDFE;">M.A., Counseling Psychology — Golden Gate University <span style="color:var(--purple-lt);">· 2001–2003</span></div>
+                  <div style="font-size:9px;color:#EEEDFE;">B.S., Psychology/Sociology — University of Oregon <span style="color:var(--purple-lt);">· 1994–1996</span></div>
+                </div>
+              </div>
+              <div style="padding-top:10px;border-top:1px solid #1e1e2e;">
                 <p class="s-eyebrow" style="color:var(--purple-lt);">Platforms</p>
                 <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;">
-                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">Sitecore</span>
-                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">Adobe Experience Manager</span>
                   <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">WordPress</span>
-                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">Tridion</span>
-                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">Documentum</span>
+                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">Sitecore</span>
+                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">SDL Tridion</span>
+                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">EMC Documentum</span>
+                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">Joomla</span>
+                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">HTML/CSS</span>
+                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">Jira</span>
+                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">Confluence</span>
+                  <span style="font-size:8px;padding:3px 8px;border:1px solid #3C3489;border-radius:3px;color:var(--purple-lt);">Figma</span>
                 </div>
               </div>
             </div>
             <div class="ticker" style="background:var(--purple-dk);">
               <div class="ticker__inner">
-                <span class="ticker__item" style="color:var(--purple-lt);">Intuit</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">Wells Fargo</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">CMS Governance</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">Content Strategy</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">14+ Years</span><span class="ticker__item" style="color:var(--purple-lt);">·</span>
-                <span class="ticker__item" style="color:var(--purple-lt);">Intuit</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">Wells Fargo</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">CMS Governance</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">Content Strategy</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">14+ Years</span><span class="ticker__item" style="color:var(--purple-lt);">·</span>
+                <span class="ticker__item" style="color:var(--purple-lt);">Intuit</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">Bank of the West</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">Wells Fargo</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">CMS Migration</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">Content Strategy</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">14+ Years</span><span class="ticker__item" style="color:var(--purple-lt);">·</span>
+                <span class="ticker__item" style="color:var(--purple-lt);">Intuit</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">Bank of the West</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">Wells Fargo</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">CMS Migration</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">Content Strategy</span><span class="ticker__item" style="color:var(--purple-lt);">·</span><span class="ticker__item" style="color:var(--purple-lt);">14+ Years</span><span class="ticker__item" style="color:var(--purple-lt);">·</span>
               </div>
             </div>
           </section>
@@ -991,23 +1026,10 @@
             <div class="section__body">
               <p class="s-eyebrow" style="color:var(--teal-lt);">Hello, I'm</p>
               <h2 class="s-heading" style="color:#E1F5EE;">Kate Javandel.</h2>
-              <p class="s-body" style="color:#9FE1CB;">Web content professional with 14+ years making enterprise digital content actually work. I care about the invisible architecture of the web — the governance, taxonomy, and structured thinking that lets great content scale. San Jose, CA. Two cats. Too many concerts. Currently deep in an AI learning phase.</p>
-              <div style="background:rgba(29,158,117,0.12);border:1px solid var(--teal);border-radius:6px;padding:8px 10px;margin-bottom:7px;">
-                <div style="font-size:8px;color:var(--teal-lt);letter-spacing:0.1em;margin-bottom:2px;">LOCATION</div>
-                <div style="font-size:11px;color:#E1F5EE;font-weight:600;">San Jose, California</div>
-              </div>
-              <div style="background:rgba(29,158,117,0.12);border:1px solid var(--teal);border-radius:6px;padding:8px 10px;margin-bottom:7px;">
-                <div style="font-size:8px;color:var(--teal-lt);letter-spacing:0.1em;margin-bottom:2px;">FUN FACT</div>
-                <div style="font-size:11px;color:#E1F5EE;font-weight:600;">Four generations of Disneyland employees in my family 🎢</div>
-              </div>
-              <div style="background:rgba(29,158,117,0.12);border:1px solid var(--teal);border-radius:6px;padding:8px 10px;margin-bottom:7px;">
-                <div style="font-size:8px;color:var(--teal-lt);letter-spacing:0.1em;margin-bottom:2px;">SORTED INTO</div>
-                <div style="font-size:11px;color:#E1F5EE;font-weight:600;">Hufflepuff 🦡 The Sorting Hat said Hufflepuff. My couch said "you're not going anywhere until you finish the series." They were both right.</div>
-              </div>
-              <div style="background:rgba(29,158,117,0.12);border:1px solid var(--teal);border-radius:6px;padding:8px 10px;">
-                <div style="font-size:8px;color:var(--teal-lt);letter-spacing:0.1em;margin-bottom:2px;">CURRENTLY EXPLORING</div>
-                <div style="font-size:11px;color:#E1F5EE;font-weight:600;">AI-augmented content workflows</div>
-              </div>
+              <p class="s-body" style="color:var(--teal-lt);font-size:10px;letter-spacing:0.08em;margin-bottom:8px;">Book lover. Gamer. Music nerd. Web publisher · Process builder · Efficiency guru.</p>
+              <p class="s-body" style="color:#9FE1CB;">Web content and CMS professional with 14+ years helping large organizations publish smarter, move faster, and maintain quality at scale. At Intuit, Bank of the West, and Wells Fargo, I've partnered with design, product, marketing, and engineering teams to manage high-traffic websites, lead complex CMS migrations, and build the systems that keep content operations running long after a project wraps.</p>
+              <p class="s-body" style="color:#9FE1CB;">My technical foundation spans WordPress, Sitecore, Tridion, EMC Documentum, and Joomla — paired with hands-on experience in HTML/CSS, QA/UAT, A/B testing, and digital asset management. I've rebuilt a 400-page site twice, led a migration cleanup touching 53,000 files, and written documentation that teams actually use.</p>
+              <p class="s-body" style="color:#9FE1CB;">Southern Californian by birth, Bay Area resident by choice. Off the clock you'll find me at a concert, mid-way through a game I won't put down, or deep in a rabbit hole of BTS discography I've already heard a hundred times.</p>
             </div>
             <div class="ticker" style="background:var(--teal-dk);">
               <div class="ticker__inner">
@@ -1025,38 +1047,31 @@
             </div>
             <div class="section__body">
               <p class="s-eyebrow" style="color:var(--coral-lt);">What fills my world</p>
-              <h2 class="s-heading" style="color:#FAECE7;">Music, making & mountains.</h2>
+              <h2 class="s-heading" style="color:#FAECE7;">Cats, chaos & everything in between.</h2>
               <div class="i-cards">
                 <div class="i-card" style="background:rgba(212,90,48,0.15);border:1px solid var(--coral);">
-                  <span class="i-icon">💜</span>
-                  <div class="i-title" style="color:#FAECE7;">BTS ARMY</div>
-                  <div class="i-body" style="color:var(--coral-lt);">Seven members, one universe. Fan merch design in Photoshop, clipping masks, and 3D printed band rings on the Bambu P1S.</div>
+                  <span class="i-icon">🐱</span>
+                  <div class="i-body" style="color:var(--coral-lt);">Two cats. Zero regrets. Excellent coworkers if you don't need your keyboard between 2 and 4pm.</div>
+                </div>
+                <div class="i-card" style="background:rgba(212,90,48,0.15);border:1px solid var(--coral);">
+                  <span class="i-icon">🎲</span>
+                  <div class="i-body" style="color:var(--coral-lt);">Professional game night host. Unofficial rules lawyer. Will absolutely gloat if I win Ticket to Ride.</div>
+                </div>
+                <div class="i-card" style="background:rgba(212,90,48,0.15);border:1px solid var(--coral);">
+                  <span class="i-icon">🧶</span>
+                  <div class="i-body" style="color:var(--coral-lt);">Chronically mid-project. My yarn stash has its own room. Finishing is optional.</div>
                 </div>
                 <div class="i-card" style="background:rgba(212,90,48,0.15);border:1px solid var(--coral);">
                   <span class="i-icon">🎸</span>
-                  <div class="i-title" style="color:#FAECE7;">Live music</div>
-                  <div class="i-body" style="color:var(--coral-lt);">Journey, Def Leppard &amp; Foreigner at AT&amp;T Park. Stadium energy is its own religion.</div>
+                  <div class="i-body" style="color:var(--coral-lt);">Vivaldi to Nine Inch Nails. Yes, really. Currently in a BTS era with no plans to leave.</div>
                 </div>
                 <div class="i-card" style="background:rgba(212,90,48,0.15);border:1px solid var(--coral);">
-                  <span class="i-icon">⛺</span>
-                  <div class="i-title" style="color:#FAECE7;">Camping</div>
-                  <div class="i-body" style="color:var(--coral-lt);">Sawyer Squeeze, Big Berkey, solid gear kit. Car camping with intent and a full prep system.</div>
+                  <span class="i-icon">📺</span>
+                  <div class="i-body" style="color:var(--coral-lt);">50 episodes. Four days. Full-time job. No regrets.</div>
                 </div>
                 <div class="i-card" style="background:rgba(212,90,48,0.15);border:1px solid var(--coral);">
-                  <span class="i-icon">✂️</span>
-                  <div class="i-title" style="color:#FAECE7;">Making things</div>
-                  <div class="i-body" style="color:var(--coral-lt);">Bambu P1S 3D printer. Photoshop. Fan merch. If I can make it myself, I will.</div>
-                </div>
-              </div>
-              <!-- MUSIC TASTE TIMELINE -->
-              <div style="margin-top:10px;background:rgba(212,90,48,0.08);border:1px solid var(--coral);border-radius:6px;padding:9px 11px;">
-                <div style="font-size:8px;color:var(--coral-lt);letter-spacing:0.12em;margin-bottom:6px;">MY MUSIC TASTE, IN ORDER</div>
-                <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:9px;color:#FAECE7;">
-                  <span>Vivaldi</span><span style="color:var(--coral-dk);">→</span>
-                  <span>Louis Armstrong</span><span style="color:var(--coral-dk);">→</span>
-                  <span>Def Leppard</span><span style="color:var(--coral-dk);">→</span>
-                  <span>Nine Inch Nails</span><span style="color:var(--coral-dk);">→</span>
-                  <span style="color:var(--coral-lt);font-weight:700;">BTS 💜</span>
+                  <span class="i-icon">🖨️</span>
+                  <div class="i-body" style="color:var(--coral-lt);">3D printer owner with no self-control. Mostly making fan merch and containers for other containers.</div>
                 </div>
               </div>
               <!-- BTS EASTER EGG -->
@@ -1077,8 +1092,8 @@
             </div>
             <div class="ticker" style="background:var(--coral-dk);">
               <div class="ticker__inner">
-                <span class="ticker__item" style="color:var(--coral-lt);">BTS ARMY</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">Live music</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">Camping</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">Making things</span><span class="ticker__item" style="color:var(--coral-lt);">·</span>
-                <span class="ticker__item" style="color:var(--coral-lt);">BTS ARMY</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">Live music</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">Camping</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">Making things</span><span class="ticker__item" style="color:var(--coral-lt);">·</span>
+                <span class="ticker__item" style="color:var(--coral-lt);">🐱 cats</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">🎲 game night</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">🧶 yarn</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">🎸 music</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">📺 TV marathons</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">🖨️ 3D printing</span><span class="ticker__item" style="color:var(--coral-lt);">·</span>
+                <span class="ticker__item" style="color:var(--coral-lt);">🐱 cats</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">🎲 game night</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">🧶 yarn</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">🎸 music</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">📺 TV marathons</span><span class="ticker__item" style="color:var(--coral-lt);">·</span><span class="ticker__item" style="color:var(--coral-lt);">🖨️ 3D printing</span><span class="ticker__item" style="color:var(--coral-lt);">·</span>
               </div>
             </div>
           </section>
@@ -1192,7 +1207,7 @@
               </div>
               <div class="info-row">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal-lt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                <div><div class="info-label">Location</div><div class="info-val">San Jose, California</div></div>
+                <div><div class="info-label">Location</div><div class="info-val">Alameda, California</div></div>
               </div>
               <div class="info-row" style="margin-bottom:0;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--amber-lt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
@@ -1227,6 +1242,9 @@
   <button class="replay-btn" id="replayBtn" aria-label="Replay boot sequence">↺ replay boot sequence</button>
 
 </main><!-- /desk -->
+
+<!-- ── WALL WHISPER ───────────────────────────────────────────── -->
+<div class="wall-whisper" aria-hidden="true">the room has secrets</div>
 
 <!-- ── BACKGROUND HOTSPOTS ─────────────────────────────────────
      Invisible clickable zones over items painted in the background
@@ -1406,7 +1424,7 @@
   /* ── CONSTANTS ──────────────────────────────────────────────── */
   const SECTION_IDS = ['work','about','interests','now','resume','contact'];
   const ZONE_IDS    = ['z-work','z-about','z-interests','z-now','z-resume','z-contact'];
-  const BOOT_MSGS   = ['initializing...','loading modules...','mounting filesystem...','rendering desktop...','almost there...'];
+  const BOOT_MSGS   = ['initializing...','loading modules...','mounting filesystem...','rendering desktop...','psst — the room has secrets...','almost there...'];
   const ZONE_STAGGER_MS = 200;  // delay between each zone appearing
   const BOOT_TOTAL_MS   = 2900; // when boot screen fades out
 
@@ -1547,24 +1565,22 @@
     } catch(e) {}
   }
 
+  const eggAudio = new Audio('audio/m-shop.mp3');
+  eggAudio.volume = 0.75;
+  eggAudio.addEventListener('ended', () => { btsPlaying = false; updateEggUI(false); });
+
   function toggleBTS() {
-    try {
-      if (btsPlaying) {
-        btsOscNodes.forEach(n => { try { n.stop(); } catch(e){} });
-        btsOscNodes = [];
-        btsPlaying = false;
-        updateEggUI(false);
-        return;
-      }
+    if (btsPlaying) {
+      eggAudio.pause();
+      eggAudio.currentTime = 0;
+      btsPlaying = false;
+      updateEggUI(false);
+    } else {
+      eggAudio.currentTime = 0;
+      eggAudio.play().catch(() => {});
       btsPlaying = true;
       updateEggUI(true);
-      const dur = playBTSMelody();
-      setTimeout(() => {
-        btsPlaying = false;
-        btsOscNodes = [];
-        updateEggUI(false);
-      }, (dur + 0.3) * 1000);
-    } catch(e) {}
+    }
   }
 
   function updateEggUI(playing) {
@@ -1723,7 +1739,7 @@
       }
     }
   }
-  hsCds.addEventListener('mouseenter', () => hotspotOn('🎵'));
+  hsCds.addEventListener('mouseenter', () => hotspotOn('🎶'));
   hsCds.addEventListener('mouseleave', hotspotOff);
   hsCds.addEventListener('click', toggleBTSAudio);
   hsCds.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') toggleBTSAudio(); });
@@ -1819,22 +1835,16 @@
   hsGames.addEventListener('click', openGame);
   hsGames.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openGame(); });
 
-  // Mickey Mouse ears → text popup + Disneyland audio
-  const dlandAudio     = new Audio('audio/dland.mp3');
-  dlandAudio.volume    = 0.75;
+  // Mickey Mouse ears → text popup only
   const disneyPopupEl  = $('disneyPopup');
   function openDisney() {
     if (openSectionId) return;
-    dlandAudio.currentTime = 0;
-    dlandAudio.play().catch(() => {});
     disneyPopupEl.classList.add('open');
     disneyPopupEl.setAttribute('aria-hidden', 'false');
   }
   function closeDisney() {
     disneyPopupEl.classList.remove('open');
     disneyPopupEl.setAttribute('aria-hidden', 'true');
-    dlandAudio.pause();
-    dlandAudio.currentTime = 0;
   }
   disneyPopupEl.addEventListener('click', closeDisney);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDisney(); });
